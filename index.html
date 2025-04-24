@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Football Grid Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    table {
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 2px solid #444;
+      padding: 10px;
+      text-align: center;
+      width: 150px;
+      height: 100px;
+    }
+
+    input {
+      width: 100%;
+      height: 100%;
+      border: none;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    input:focus {
+      outline: 2px solid #007bff;
+    }
+
+    .header {
+      background-color: #eee;
+      font-weight: bold;
+    }
+
+    .correct {
+      background-color: #d4edda;
+    }
+
+    .incorrect {
+      background-color: #f8d7da;
+    }
+
+    .controls {
+      margin-top: 20px;
+    }
+
+    #timer {
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    #leaderboard {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Football Grid Game</h1>
+
+  <div id="timer">Time Left: 60s</div>
+
+  <table>
+    <tr>
+      <th></th>
+      <th class="header">Team A</th>
+      <th class="header">Team B</th>
+      <th class="header">Team C</th>
+    </tr>
+    <tr>
+      <th class="header">Team X</th>
+      <td><input type="text" id="cell-0-0"></td>
+      <td><input type="text" id="cell-0-1"></td>
+      <td><input type="text" id="cell-0-2"></td>
+    </tr>
+    <tr>
+      <th class="header">Team Y</th>
+      <td><input type="text" id="cell-1-0"></td>
+      <td><input type="text" id="cell-1-1"></td>
+      <td><input type="text" id="cell-1-2"></td>
+    </tr>
+    <tr>
+      <th class="header">Team Z</th>
+      <td><input type="text" id="cell-2-0"></td>
+      <td><input type="text" id="cell-2-1"></td>
+      <td><input type="text" id="cell-2-2"></td>
+    </tr>
+  </table>
+
+  <div class="controls">
+    <button onclick="submitGrid()">Submit</button>
+    <button onclick="resetGrid()">Reset</button>
+  </div>
+
+  <div id="leaderboard"></div>
+
+  <script>
+    let rowHeaders = [];
+    let colHeaders = [];
+    let validPlayers = {};
+    let timeLeft = 60;
+    let timerInterval;
+
+    async function loadTeamsAndGenerateGrid() {
+      try {
+        // Fetch the list of teams from listOfTeams.json
+        const res = await fetch('listOfTeams.json');
+        const teams = await res.json();
+
+        // Shuffle the teams and select random ones for rows and columns
+        const shuffledTeams = teams.sort(() => Math.random() - 0.5);
+        rowHeaders = shuffledTeams.slice(0, 3); // Select 3 random teams for rows
+        colHeaders = shuffledTeams.slice(3, 6); // Select 3 random teams for columns
+
+        // Update the grid headers dynamically
+        const table = document.querySelector('table');
+        const headerRow = table.querySelector('tr:first-child'); // First row for column headers
+        const rowHeadersElements = table.querySelectorAll('tr:not(:first-child) th:first-child'); // First <th> in each row after the first
+
+        // Update column headers
+        headerRow.querySelectorAll('th:not(:first-child)').forEach((th, index) => {
+          th.textContent = colHeaders[index];
+        });
+
+        // Update row headers
+        rowHeadersElements.forEach((th, index) => {
+          th.textContent = rowHeaders[index];
+        });
+
+        // Load player data
+        loadPlayerData();
+      } catch (error) {
+        alert("Failed to load teams or player data.");
+      }
+    }
+
+    async function loadPlayerData() {
+      try {
+        const res = await fetch('players.json');
+        validPlayers = await res.json();
+        startTimer();
+      } catch (error) {
+        alert("Failed to load player data.");
+      }
+    }
+
+    function submitGrid() {
+      clearInterval(timerInterval);
+      let score = 0;
+
+      // Loop through each cell in the grid
+      for (let row = 0; row < 3; row++) {
+        for (let col = 0; col < 3; col++) {
+          const input = document.getElementById(`cell-${row}-${col}`);
+          const playerName = input.value.trim();
+          const key = `${rowHeaders[row]}|${colHeaders[col]}`; // Combine row and column headers as the key
+
+          // Check if the player's name is valid for the given row and column
+          if (validPlayers[key]?.some(name => name.toLowerCase() === playerName.toLowerCase())) {
+            input.classList.remove("incorrect");
+            input.classList.add("correct");
+            score++;
+          } else {
+            input.classList.remove("correct");
+            input.classList.add("incorrect");
+          }
+        }
+      }
+
+      // Display the score
+      alert(`You scored ${score} / 9`);
+      saveHighScore(score);
+    }
+
+    function resetGrid() {
+      const inputs = document.querySelectorAll('input');
+      inputs.forEach(input => {
+        input.value = "";
+        input.classList.remove("correct", "incorrect");
+      });
+      timeLeft = 60;
+      document.getElementById("timer").textContent = `Time Left: ${timeLeft}s`;
+      clearInterval(timerInterval);
+      startTimer();
+    }
+
+    function startTimer() {
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        document.getElementById("timer").textContent = `Time Left: ${timeLeft}s`;
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          alert("Time's up!");
+          submitGrid();
+        }
+      }, 1000);
+    }
+
+    function saveHighScore(score) {
+      const bestScore = localStorage.getItem("bestScore") || 0;
+      if (score > bestScore) {
+        localStorage.setItem("bestScore", score);
+      }
+      displayLeaderboard();
+    }
+
+    function displayLeaderboard() {
+      const bestScore = localStorage.getItem("bestScore") || 0;
+      document.getElementById("leaderboard").textContent = `Best Score: ${bestScore} / 9`;
+    }
+
+    // Initialize
+    displayLeaderboard();
+    loadTeamsAndGenerateGrid();
+  </script>
+</body>
+</html>
