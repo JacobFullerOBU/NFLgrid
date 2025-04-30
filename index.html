@@ -64,12 +64,15 @@
       margin-top: 20px;
       font-weight: bold;
     }
+
+    #correct-answers {
+      margin-top: 20px;
+      font-size: 1rem;
+    }
   </style>
 </head>
 <body>
   <h1>Football Grid Game</h1>
-
-  <div id="timer">Time Left: 60s</div>
 
   <table>
     <tr>
@@ -80,21 +83,48 @@
     </tr>
     <tr>
       <th class="header">Team X</th>
-      <td><input type="text" id="cell-0-0"></td>
-      <td><input type="text" id="cell-0-1"></td>
-      <td><input type="text" id="cell-0-2"></td>
+      <td>
+        <input type="text" id="cell-0-0">
+        <button onclick="submitGuess(0, 0)">Submit Guess</button>
+      </td>
+      <td>
+        <input type="text" id="cell-0-1">
+        <button onclick="submitGuess(0, 1)">Submit Guess</button>
+      </td>
+      <td>
+        <input type="text" id="cell-0-2">
+        <button onclick="submitGuess(0, 2)">Submit Guess</button>
+      </td>
     </tr>
     <tr>
       <th class="header">Team Y</th>
-      <td><input type="text" id="cell-1-0"></td>
-      <td><input type="text" id="cell-1-1"></td>
-      <td><input type="text" id="cell-1-2"></td>
+      <td>
+        <input type="text" id="cell-1-0">
+        <button onclick="submitGuess(1, 0)">Submit Guess</button>
+      </td>
+      <td>
+        <input type="text" id="cell-1-1">
+        <button onclick="submitGuess(1, 1)">Submit Guess</button>
+      </td>
+      <td>
+        <input type="text" id="cell-1-2">
+        <button onclick="submitGuess(1, 2)">Submit Guess</button>
+      </td>
     </tr>
     <tr>
       <th class="header">Team Z</th>
-      <td><input type="text" id="cell-2-0"></td>
-      <td><input type="text" id="cell-2-1"></td>
-      <td><input type="text" id="cell-2-2"></td>
+      <td>
+        <input type="text" id="cell-2-0">
+        <button onclick="submitGuess(2, 0)">Submit Guess</button>
+      </td>
+      <td>
+        <input type="text" id="cell-2-1">
+        <button onclick="submitGuess(2, 1)">Submit Guess</button>
+      </td>
+      <td>
+        <input type="text" id="cell-2-2">
+        <button onclick="submitGuess(2, 2)">Submit Guess</button>
+      </td>
     </tr>
   </table>
 
@@ -104,6 +134,12 @@
   </div>
 
   <div id="leaderboard"></div>
+  <div id="correct-answers">
+    <h3>Possible Correct Answers:</h3>
+    <p><strong>Team X x Team A:</strong> Matt Leinart, Chris Liwienski</p>
+    <p><strong>Team Y x Team B:</strong> Deuce Lutui</p>
+    <p><strong>Team Z x Team C:</strong> None</p>
+  </div>
 
   <script>
     let rowHeaders = [];
@@ -139,7 +175,7 @@
         });
 
         // Load player data
-        loadPlayerData();
+        await loadPlayerData();
       } catch (error) {
         alert("Failed to load teams or player data.");
       }
@@ -147,27 +183,80 @@
 
     async function loadPlayerData() {
       try {
-        const res = await fetch('players.json');
-        validPlayers = await res.json();
-        startTimer();
+        // Fetch the players who played for multiple teams
+        const res = await fetch('players_multiple_teams.json');
+        const playersData = await res.json();
+
+        // Map players to the teams they played for
+        playersData.forEach(playerEntry => {
+          const player = playerEntry.Player.toLowerCase(); // Normalize player name for case-insensitive matching
+          playerEntry.Teams.forEach(team => {
+            const key = `${team}`; // Use the team as the key
+            if (!validPlayers[key]) {
+              validPlayers[key] = [];
+            }
+            validPlayers[key].push(player);
+          });
+        });
       } catch (error) {
         alert("Failed to load player data.");
+      }
+    }
+
+    function submitGuess(row, col) {
+      const input = document.getElementById(`cell-${row}-${col}`);
+      const button = input.nextElementSibling; // Get the "Submit Guess" button next to the input
+      const playerName = input.value.trim().toLowerCase(); // Normalize input for case-insensitive matching
+      const rowTeam = rowHeaders[row];
+      const colTeam = colHeaders[col];
+
+      // Check if the player's name is valid for the given row and column
+      if (
+        validPlayers[rowTeam]?.includes(playerName) &&
+        validPlayers[colTeam]?.includes(playerName)
+      ) {
+        input.classList.remove("incorrect");
+        input.classList.add("correct");
+
+        // Lock the input and button
+        input.disabled = true;
+        button.disabled = true;
+
+        alert(`Correct! ${playerName} played for both ${rowTeam} and ${colTeam}.`);
+      } else {
+        input.classList.remove("correct");
+        input.classList.add("incorrect");
+
+        // Find possible correct answers for this cell
+        const possibleAnswers = validPlayers[rowTeam]?.filter(player =>
+          validPlayers[colTeam]?.includes(player)
+        ) || [];
+        alert(
+          `Incorrect! Possible correct answers for ${rowTeam} x ${colTeam}: ${
+            possibleAnswers.length > 0 ? possibleAnswers.join(", ") : "None"
+          }`
+        );
       }
     }
 
     function submitGrid() {
       clearInterval(timerInterval);
       let score = 0;
+      const correctAnswers = []; // Array to store correct answers for each cell
 
       // Loop through each cell in the grid
       for (let row = 0; row < 3; row++) {
         for (let col = 0; col < 3; col++) {
           const input = document.getElementById(`cell-${row}-${col}`);
-          const playerName = input.value.trim();
-          const key = `${rowHeaders[row]}|${colHeaders[col]}`; // Combine row and column headers as the key
+          const playerName = input.value.trim().toLowerCase(); // Normalize input for case-insensitive matching
+          const rowTeam = rowHeaders[row];
+          const colTeam = colHeaders[col];
 
           // Check if the player's name is valid for the given row and column
-          if (validPlayers[key]?.some(name => name.toLowerCase() === playerName.toLowerCase())) {
+          if (
+            validPlayers[rowTeam]?.includes(playerName) &&
+            validPlayers[colTeam]?.includes(playerName)
+          ) {
             input.classList.remove("incorrect");
             input.classList.add("correct");
             score++;
@@ -175,12 +264,39 @@
             input.classList.remove("correct");
             input.classList.add("incorrect");
           }
+
+          // Find all possible correct answers for this cell
+          const possibleAnswers = validPlayers[rowTeam]?.filter(player => validPlayers[colTeam]?.includes(player)) || [];
+          correctAnswers.push({
+            rowTeam,
+            colTeam,
+            possibleAnswers,
+          });
         }
       }
 
       // Display the score
       alert(`You scored ${score} / 9`);
       saveHighScore(score);
+
+      // Display possible correct answers
+      displayCorrectAnswers(correctAnswers);
+    }
+
+    function displayCorrectAnswers(correctAnswers) {
+      const answersDiv = document.getElementById("correct-answers");
+      answersDiv.innerHTML = "<h3>Possible Correct Answers:</h3>";
+
+      correctAnswers.forEach(answer => {
+        const { rowTeam, colTeam, possibleAnswers } = answer;
+        const answerText = `
+          <p>
+            <strong>${rowTeam} x ${colTeam}:</strong>
+            ${possibleAnswers.length > 0 ? possibleAnswers.join(", ") : "None"}
+          </p>
+        `;
+        answersDiv.innerHTML += answerText;
+      });
     }
 
     function resetGrid() {
@@ -189,10 +305,6 @@
         input.value = "";
         input.classList.remove("correct", "incorrect");
       });
-      timeLeft = 60;
-      document.getElementById("timer").textContent = `Time Left: ${timeLeft}s`;
-      clearInterval(timerInterval);
-      startTimer();
     }
 
     function startTimer() {

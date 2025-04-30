@@ -1,32 +1,35 @@
+import pandas as pd
 import json
 from collections import defaultdict
 
-# Load the data from the JSON file
-input_file = "playersList.json"  # Replace with your JSON file name
-output_file = "players_multiple_teams.json"  # The existing output file
+# File paths
+excel_file = "CardinalsXFalcons.xlsx"  # Replace with your Excel file name
+output_file = "players_multiple_teams.json"  # The existing JSON file
 
-# Load the new data from the input file
-with open(input_file, "r") as file:
-    data = json.load(file)
+# Load the data from the Excel file
+df = pd.read_excel(excel_file, engine="openpyxl")  # Use openpyxl for .xlsx files
+
+# Ensure the columns are named correctly (adjust these if necessary)
+df.columns = ['Player', 'Cardinals_Yrs', 'Cardinals_G', 'Cardinals_AV', 'Falcons_Yrs', 'Falcons_G', 'Falcons_AV']
 
 # Create a dictionary to track which teams each player was on
 player_teams = defaultdict(set)
 
-# Iterate through the new data and populate the dictionary
-for entry in data:
-    team = entry.get("team")  # The team name
-    player = entry.get("full_name")  # The player's full name
-    if team and player:  # Ensure both team and player are not None
-        player_teams[player].add(team)
+# Populate the dictionary from the Excel data
+for _, row in df.iterrows():
+    player = row['Player']
+    if not pd.isna(row['Cardinals_Yrs']):  # Check if the player has data for the Cardinals
+        player_teams[player].add("Arizona Cardinals")
+    if not pd.isna(row['Falcons_Yrs']):  # Check if the player has data for the Falcons
+        player_teams[player].add("Atlanta Falcons")
 
-# Filter players who were on multiple teams
+# Convert the dictionary to a list of dictionaries
 new_players_multiple_teams = [
     {"Player": player, "Teams": list(teams)}
     for player, teams in player_teams.items()
-    if len(teams) > 1
 ]
 
-# Load the existing data from the output file, if it exists
+# Load the existing data from the JSON file, if it exists
 try:
     with open(output_file, "r") as file:
         existing_data = json.load(file)
@@ -49,8 +52,8 @@ for new_entry in new_players_multiple_teams:
 # Convert the merged data back to a list of dictionaries
 final_data = [{"Player": player, "Teams": teams} for player, teams in merged_data.items()]
 
-# Save the updated data back to the output file
+# Save the updated data back to the JSON file
 with open(output_file, "w") as file:
     json.dump(final_data, file, indent=4)
 
-print(f"Players who were on multiple teams have been updated in {output_file}")
+print(f"Players from {excel_file} have been added to {output_file}")
