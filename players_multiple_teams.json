@@ -68,10 +68,12 @@
     {
         "Player": "Anquan Boldin",
         "Teams": [
-            "BAL",
+            "SF",
             "DET",
+            "BAL",
+            "Atlanta Falcons",
             "ARI",
-            "SF"
+            "Arizona Cardinals"
         ]
     },
     {
@@ -168,11 +170,11 @@
     {
         "Player": "Alex Stepanovich",
         "Teams": [
-            "ARI",
-            "Arizona Cardinals",
             "CIN",
+            "ATL",
             "Atlanta Falcons",
-            "ATL"
+            "Arizona Cardinals",
+            "ARI"
         ]
     },
     {
@@ -509,10 +511,10 @@
     {
         "Player": "John Abraham",
         "Teams": [
+            "ARI",
             "Arizona Cardinals",
-            "Atlanta Falcons",
             "ATL",
-            "ARI"
+            "Atlanta Falcons"
         ]
     },
     {
@@ -615,8 +617,10 @@
     {
         "Player": "Todd Heap",
         "Teams": [
+            "Atlanta Falcons",
             "BAL",
-            "ARI"
+            "ARI",
+            "Arizona Cardinals"
         ]
     },
     {
@@ -650,8 +654,10 @@
     {
         "Player": "Terrell Suggs",
         "Teams": [
+            "Atlanta Falcons",
             "BAL",
-            "ARI"
+            "ARI",
+            "Arizona Cardinals"
         ]
     },
     {
@@ -680,9 +686,11 @@
         "Player": "Keydrick Vincent",
         "Teams": [
             "BAL",
+            "CAR",
+            "Atlanta Falcons",
             "TB",
             "ARI",
-            "CAR"
+            "Arizona Cardinals"
         ]
     },
     {
@@ -1685,7 +1693,9 @@
         "Player": "Domata Peko",
         "Teams": [
             "DEN",
-            "CIN"
+            "Atlanta Falcons",
+            "CIN",
+            "Arizona Cardinals"
         ]
     },
     {
@@ -2129,17 +2139,19 @@
     {
         "Player": "Jason Wright",
         "Teams": [
+            "ARI",
             "Arizona Cardinals",
-            "Atlanta Falcons",
             "CLE",
-            "ARI"
+            "Atlanta Falcons"
         ]
     },
     {
         "Player": "Dave Zastudil",
         "Teams": [
+            "Atlanta Falcons",
+            "CLE",
             "ARI",
-            "CLE"
+            "Arizona Cardinals"
         ]
     },
     {
@@ -2776,11 +2788,13 @@
     {
         "Player": "Cory Redding",
         "Teams": [
+            "DET",
+            "BAL",
             "IND",
             "SEA",
+            "Atlanta Falcons",
             "ARI",
-            "DET",
-            "BAL"
+            "Arizona Cardinals"
         ]
     },
     {
@@ -3480,14 +3494,16 @@
     {
         "Player": "Jason Babin",
         "Teams": [
-            "HOU",
-            "SEA",
             "JAX",
-            "TEN",
+            "HOU",
             "BAL",
-            "KC",
             "PHI",
-            "NYJ"
+            "NYJ",
+            "KC",
+            "SEA",
+            "Atlanta Falcons",
+            "TEN",
+            "Arizona Cardinals"
         ]
     },
     {
@@ -3622,14 +3638,14 @@
     {
         "Player": "Dwight Freeney",
         "Teams": [
-            "DET",
-            "ARI",
+            "SD",
+            "ATL",
+            "Atlanta Falcons",
+            "SEA",
             "Arizona Cardinals",
             "IND",
-            "SEA",
-            "Atlanta Falcons",
-            "ATL",
-            "SD"
+            "DET",
+            "ARI"
         ]
     },
     {
@@ -4943,8 +4959,10 @@
         "Player": "Chester Taylor",
         "Teams": [
             "CHI",
+            "Atlanta Falcons",
             "MIN",
-            "ARI"
+            "ARI",
+            "Arizona Cardinals"
         ]
     },
     {
@@ -5173,11 +5191,11 @@
     {
         "Player": "James Sanders",
         "Teams": [
-            "ARI",
+            "ATL",
+            "Atlanta Falcons",
             "Arizona Cardinals",
             "NE",
-            "Atlanta Falcons",
-            "ATL"
+            "ARI"
         ]
     },
     {
@@ -5643,13 +5661,13 @@
     {
         "Player": "Jay Feely",
         "Teams": [
-            "ARI",
-            "MIA",
-            "Arizona Cardinals",
             "Atlanta Falcons",
-            "NYG",
+            "Arizona Cardinals",
+            "NYJ",
+            "ARI",
             "CHI",
-            "NYJ"
+            "NYG",
+            "MIA"
         ]
     },
     {
@@ -6267,10 +6285,12 @@
         "Player": "Sean Considine",
         "Teams": [
             "JAX",
-            "CAR",
-            "ARI",
             "BAL",
-            "PHI"
+            "PHI",
+            "CAR",
+            "Atlanta Falcons",
+            "ARI",
+            "Arizona Cardinals"
         ]
     },
     {
@@ -7342,9 +7362,9 @@
     {
         "Player": "Eric Johnson",
         "Teams": [
-            "NO",
-            "Arizona Cardinals",
             "SF",
+            "Arizona Cardinals",
+            "NO",
             "Atlanta Falcons"
         ]
     },
@@ -8631,21 +8651,21 @@
         "Player": "D'Anthony Batiste",
         "Teams": [
             "WAS",
-            "ARI",
-            "DEN",
-            "Arizona Cardinals",
+            "ATL",
             "Atlanta Falcons",
-            "ATL"
+            "Arizona Cardinals",
+            "DEN",
+            "ARI"
         ]
     },
     {
         "Player": "Matt Prater",
         "Teams": [
-            "DEN",
+            "ATL",
+            "Atlanta Falcons",
             "Arizona Cardinals",
             "DET",
-            "Atlanta Falcons",
-            "ATL"
+            "DEN"
         ]
     },
     {
@@ -9271,9 +9291,11 @@
     {
         "Player": "Tramon Williams",
         "Teams": [
+            "Atlanta Falcons",
             "GB",
+            "CLE",
             "ARI",
-            "CLE"
+            "Arizona Cardinals"
         ]
     },
     {
@@ -10468,10 +10490,10 @@
     {
         "Player": "Calais Campbell",
         "Teams": [
-            "Arizona Cardinals",
-            "Atlanta Falcons",
             "JAX",
-            "ARI"
+            "Atlanta Falcons",
+            "ARI",
+            "Arizona Cardinals"
         ]
     },
     {
@@ -10550,9 +10572,11 @@
     {
         "Player": "Jalen Parmele",
         "Teams": [
-            "BAL",
             "JAX",
-            "ARI"
+            "BAL",
+            "Atlanta Falcons",
+            "ARI",
+            "Arizona Cardinals"
         ]
     },
     {
@@ -11792,8 +11816,10 @@
         "Teams": [
             "SD",
             "BAL",
+            "CAR",
+            "Atlanta Falcons",
             "ARI",
-            "CAR"
+            "Arizona Cardinals"
         ]
     },
     {
@@ -12339,12 +12365,14 @@
     {
         "Player": "Andre Smith",
         "Teams": [
-            "MIN",
-            "ARI",
-            "CIN",
+            "Arizona Cardinals",
             "CAR",
-            "DAL",
-            "CLE"
+            "CIN",
+            "Atlanta Falcons",
+            "MIN",
+            "CLE",
+            "ARI",
+            "DAL"
         ]
     },
     {
@@ -12743,7 +12771,9 @@
         "Teams": [
             "BAL",
             "IND",
-            "ARI"
+            "Atlanta Falcons",
+            "ARI",
+            "Arizona Cardinals"
         ]
     },
     {
@@ -13050,9 +13080,9 @@
     {
         "Player": "D.J. Johnson",
         "Teams": [
-            "NYG",
-            "WAS",
             "Arizona Cardinals",
+            "WAS",
+            "NYG",
             "Atlanta Falcons"
         ]
     },
@@ -13443,10 +13473,12 @@
     {
         "Player": "Michael Crabtree",
         "Teams": [
-            "BAL",
+            "SF",
             "OAK",
+            "BAL",
+            "Atlanta Falcons",
             "ARI",
-            "SF"
+            "Arizona Cardinals"
         ]
     },
     {
@@ -13709,23 +13741,23 @@
         "Player": "Andre Roberts",
         "Teams": [
             "WAS",
-            "ARI",
-            "Arizona Cardinals",
-            "BUF",
-            "DET",
+            "ATL",
             "Atlanta Falcons",
+            "Arizona Cardinals",
             "NYJ",
-            "ATL"
+            "DET",
+            "ARI",
+            "BUF"
         ]
     },
     {
         "Player": "O'Brien Schofield",
         "Teams": [
-            "ARI",
-            "Arizona Cardinals",
-            "SEA",
+            "ATL",
             "Atlanta Falcons",
-            "ATL"
+            "SEA",
+            "Arizona Cardinals",
+            "ARI"
         ]
     },
     {
@@ -13783,10 +13815,10 @@
     {
         "Player": "Sean Weatherspoon",
         "Teams": [
+            "ARI",
             "Arizona Cardinals",
-            "Atlanta Falcons",
             "ATL",
-            "ARI"
+            "Atlanta Falcons"
         ]
     },
     {
@@ -13813,10 +13845,10 @@
     {
         "Player": "Corey Peters",
         "Teams": [
+            "ARI",
             "Arizona Cardinals",
-            "Atlanta Falcons",
             "ATL",
-            "ARI"
+            "Atlanta Falcons"
         ]
     },
     {
@@ -14131,10 +14163,12 @@
         "Player": "Bryan McCann",
         "Teams": [
             "OAK",
-            "ARI",
-            "DAL",
             "BAL",
-            "MIA"
+            "Arizona Cardinals",
+            "Atlanta Falcons",
+            "MIA",
+            "ARI",
+            "DAL"
         ]
     },
     {
@@ -14557,11 +14591,11 @@
     {
         "Player": "Javier Arenas",
         "Teams": [
-            "ARI",
-            "KC",
-            "Arizona Cardinals",
+            "ATL",
             "Atlanta Falcons",
-            "ATL"
+            "Arizona Cardinals",
+            "ARI",
+            "KC"
         ]
     },
     {
@@ -15649,9 +15683,11 @@
     {
         "Player": "Josh Bynes",
         "Teams": [
-            "BAL",
             "DET",
-            "ARI"
+            "BAL",
+            "Atlanta Falcons",
+            "ARI",
+            "Arizona Cardinals"
         ]
     },
     {
@@ -16159,11 +16195,11 @@
     {
         "Player": "Brooks Reed",
         "Teams": [
-            "ARI",
+            "ATL",
+            "Atlanta Falcons",
             "Arizona Cardinals",
             "HOU",
-            "Atlanta Falcons",
-            "ATL"
+            "ARI"
         ]
     },
     {
@@ -17239,11 +17275,11 @@
     {
         "Player": "Justin Bethel",
         "Teams": [
-            "ARI",
-            "Arizona Cardinals",
             "BAL",
+            "ATL",
             "Atlanta Falcons",
-            "ATL"
+            "ARI",
+            "Arizona Cardinals"
         ]
     },
     {
@@ -17855,12 +17891,14 @@
     {
         "Player": "Jeremy Ross",
         "Teams": [
-            "GB",
-            "OAK",
-            "ARI",
             "DET",
+            "OAK",
             "BAL",
-            "NYJ"
+            "NYJ",
+            "Atlanta Falcons",
+            "GB",
+            "ARI",
+            "Arizona Cardinals"
         ]
     },
     {
@@ -18006,7 +18044,9 @@
         "Teams": [
             "BAL",
             "IND",
-            "ARI"
+            "Atlanta Falcons",
+            "ARI",
+            "Arizona Cardinals"
         ]
     },
     {
@@ -19114,8 +19154,10 @@
     {
         "Player": "Tony Jefferson",
         "Teams": [
+            "Atlanta Falcons",
             "BAL",
-            "ARI"
+            "ARI",
+            "Arizona Cardinals"
         ]
     },
     {
@@ -19151,10 +19193,10 @@
     {
         "Player": "Robert Alford",
         "Teams": [
+            "ARI",
             "Arizona Cardinals",
-            "Atlanta Falcons",
             "ATL",
-            "ARI"
+            "Atlanta Falcons"
         ]
     },
     {
@@ -19167,11 +19209,11 @@
     {
         "Player": "Joplo Bartu",
         "Teams": [
-            "ARI",
+            "ATL",
+            "Atlanta Falcons",
             "Arizona Cardinals",
             "JAX",
-            "Atlanta Falcons",
-            "ATL"
+            "ARI"
         ]
     },
     {
@@ -20001,13 +20043,13 @@
     {
         "Player": "Jamar Taylor",
         "Teams": [
-            "ARI",
-            "MIA",
-            "DEN",
+            "Atlanta Falcons",
+            "SEA",
             "Arizona Cardinals",
             "CLE",
-            "SEA",
-            "Atlanta Falcons"
+            "DEN",
+            "ARI",
+            "MIA"
         ]
     },
     {
@@ -20513,11 +20555,11 @@
     {
         "Player": "Derrick Coleman",
         "Teams": [
-            "ARI",
-            "Arizona Cardinals",
-            "SEA",
+            "ATL",
             "Atlanta Falcons",
-            "ATL"
+            "SEA",
+            "Arizona Cardinals",
+            "ARI"
         ]
     },
     {
@@ -20915,7 +20957,9 @@
         "Teams": [
             "BAL",
             "BUF",
-            "ARI"
+            "Atlanta Falcons",
+            "ARI",
+            "Arizona Cardinals"
         ]
     },
     {
@@ -21796,10 +21840,10 @@
     {
         "Player": "Damien Williams",
         "Teams": [
-            "MIA",
-            "KC",
             "Arizona Cardinals",
-            "Atlanta Falcons"
+            "Atlanta Falcons",
+            "KC",
+            "MIA"
         ]
     },
     {
@@ -21950,8 +21994,10 @@
     {
         "Player": "Devon Kennard",
         "Teams": [
+            "NYG",
             "DET",
-            "NYG"
+            "Atlanta Falcons",
+            "Arizona Cardinals"
         ]
     },
     {
@@ -22715,8 +22761,10 @@
     {
         "Player": "Maxx Williams",
         "Teams": [
+            "Atlanta Falcons",
             "BAL",
-            "ARI"
+            "ARI",
+            "Arizona Cardinals"
         ]
     },
     {
@@ -24384,20 +24432,20 @@
     {
         "Player": "John Wetzel",
         "Teams": [
+            "ARI",
             "Arizona Cardinals",
-            "Atlanta Falcons",
             "ATL",
-            "ARI"
+            "Atlanta Falcons"
         ]
     },
     {
         "Player": "Matt Wile",
         "Teams": [
-            "MIN",
-            "ARI",
-            "Arizona Cardinals",
+            "ATL",
             "Atlanta Falcons",
-            "ATL"
+            "Arizona Cardinals",
+            "MIN",
+            "ARI"
         ]
     },
     {
@@ -24431,11 +24479,11 @@
     {
         "Player": "C.J. Goodwin",
         "Teams": [
-            "ARI",
-            "Arizona Cardinals",
-            "Atlanta Falcons",
             "ATL",
-            "DAL"
+            "Atlanta Falcons",
+            "Arizona Cardinals",
+            "DAL",
+            "ARI"
         ]
     },
     {
@@ -24521,10 +24569,10 @@
     {
         "Player": "Damiere Byrd",
         "Teams": [
-            "CAR",
+            "ARI",
             "Arizona Cardinals",
-            "Atlanta Falcons",
-            "ARI"
+            "CAR",
+            "Atlanta Falcons"
         ]
     },
     {
@@ -25329,9 +25377,9 @@
     {
         "Player": "Antonio Hamilton",
         "Teams": [
-            "NYG",
             "Arizona Cardinals",
             "OAK",
+            "NYG",
             "Atlanta Falcons"
         ]
     },
@@ -25632,8 +25680,10 @@
     {
         "Player": "Will Holden",
         "Teams": [
-            "MIA",
-            "ARI"
+            "Atlanta Falcons",
+            "Arizona Cardinals",
+            "ARI",
+            "MIA"
         ]
     },
     {
@@ -26503,10 +26553,10 @@
     {
         "Player": "Josh Rosen",
         "Teams": [
-            "MIA",
+            "ARI",
             "Arizona Cardinals",
             "Atlanta Falcons",
-            "ARI"
+            "MIA"
         ]
     },
     {
@@ -26779,8 +26829,8 @@
     {
         "Player": "Player",
         "Teams": [
-            "Arizona Cardinals",
-            "Atlanta Falcons"
+            "Atlanta Falcons",
+            "Arizona Cardinals"
         ]
     },
     {
@@ -26814,8 +26864,8 @@
     {
         "Player": "Ethan Brooks",
         "Teams": [
-            "Arizona Cardinals",
-            "Atlanta Falcons"
+            "Atlanta Falcons",
+            "Arizona Cardinals"
         ]
     },
     {
@@ -27096,6 +27146,146 @@
         "Teams": [
             "Arizona Cardinals",
             "Atlanta Falcons"
+        ]
+    },
+    {
+        "Player": "Obafemi Ayanbadejo",
+        "Teams": [
+            "Atlanta Falcons",
+            "Arizona Cardinals"
+        ]
+    },
+    {
+        "Player": "Jeff Blake",
+        "Teams": [
+            "Atlanta Falcons",
+            "Arizona Cardinals"
+        ]
+    },
+    {
+        "Player": "Marquise Brown",
+        "Teams": [
+            "Atlanta Falcons",
+            "Arizona Cardinals"
+        ]
+    },
+    {
+        "Player": "Mike Caldwell",
+        "Teams": [
+            "Atlanta Falcons",
+            "Arizona Cardinals"
+        ]
+    },
+    {
+        "Player": "Stoney Case",
+        "Teams": [
+            "Atlanta Falcons",
+            "Arizona Cardinals"
+        ]
+    },
+    {
+        "Player": "Dan Chisena",
+        "Teams": [
+            "Atlanta Falcons",
+            "Arizona Cardinals"
+        ]
+    },
+    {
+        "Player": "Trystan Colon-Castillo",
+        "Teams": [
+            "Atlanta Falcons",
+            "Arizona Cardinals"
+        ]
+    },
+    {
+        "Player": "Bernard Dafney",
+        "Teams": [
+            "Atlanta Falcons",
+            "Arizona Cardinals"
+        ]
+    },
+    {
+        "Player": "Kenyan Drake",
+        "Teams": [
+            "Atlanta Falcons",
+            "Arizona Cardinals"
+        ]
+    },
+    {
+        "Player": "Andy Isabella",
+        "Teams": [
+            "Atlanta Falcons",
+            "Arizona Cardinals"
+        ]
+    },
+    {
+        "Player": "Josh Jones",
+        "Teams": [
+            "Atlanta Falcons",
+            "Arizona Cardinals"
+        ]
+    },
+    {
+        "Player": "Tom Knight",
+        "Teams": [
+            "Atlanta Falcons",
+            "Arizona Cardinals"
+        ]
+    },
+    {
+        "Player": "Trace McSorley",
+        "Teams": [
+            "Atlanta Falcons",
+            "Arizona Cardinals"
+        ]
+    },
+    {
+        "Player": "Chris Moore",
+        "Teams": [
+            "Atlanta Falcons",
+            "Arizona Cardinals"
+        ]
+    },
+    {
+        "Player": "Harold Morrow",
+        "Teams": [
+            "Atlanta Falcons",
+            "Arizona Cardinals"
+        ]
+    },
+    {
+        "Player": "Frank Sanders",
+        "Teams": [
+            "Atlanta Falcons",
+            "Arizona Cardinals"
+        ]
+    },
+    {
+        "Player": "Duane Starks",
+        "Teams": [
+            "Atlanta Falcons",
+            "Arizona Cardinals"
+        ]
+    },
+    {
+        "Player": "Robert Tate",
+        "Teams": [
+            "Atlanta Falcons",
+            "Arizona Cardinals"
+        ]
+    },
+    {
+        "Player": "Raymond Walls",
+        "Teams": [
+            "Atlanta Falcons",
+            "Arizona Cardinals"
+        ]
+    },
+    {
+        "Player": "Ty'Son Williams",
+        "Teams": [
+            "Atlanta Falcons",
+            "Arizona Cardinals"
         ]
     }
 ]

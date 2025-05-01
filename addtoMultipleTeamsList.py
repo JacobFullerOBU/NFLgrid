@@ -3,14 +3,15 @@ import json
 from collections import defaultdict
 
 # File paths
-excel_file = "CardinalsXFalcons.xlsx"  # Replace with your Excel file name
+excel_file = "players_teams.xlsx"  # Replace with your Excel file name
 output_file = "players_multiple_teams.json"  # The existing JSON file
 
 # Load the data from the Excel file
 df = pd.read_excel(excel_file, engine="openpyxl")  # Use openpyxl for .xlsx files
 
-# Ensure the columns are named correctly (adjust these if necessary)
-df.columns = ['Player', 'Cardinals_Yrs', 'Cardinals_G', 'Cardinals_AV', 'Falcons_Yrs', 'Falcons_G', 'Falcons_AV']
+# Identify team columns dynamically
+team_columns = [col for col in df.columns if "Yrs" in col]  # Columns containing "Yrs" indicate team data
+team_names = [col.split("_")[0] for col in team_columns]  # Extract team names from column headers
 
 # Create a dictionary to track which teams each player was on
 player_teams = defaultdict(set)
@@ -18,10 +19,9 @@ player_teams = defaultdict(set)
 # Populate the dictionary from the Excel data
 for _, row in df.iterrows():
     player = row['Player']
-    if not pd.isna(row['Cardinals_Yrs']):  # Check if the player has data for the Cardinals
-        player_teams[player].add("Arizona Cardinals")
-    if not pd.isna(row['Falcons_Yrs']):  # Check if the player has data for the Falcons
-        player_teams[player].add("Atlanta Falcons")
+    for team, column in zip(team_names, team_columns):
+        if not pd.isna(row[column]):  # Check if the player has data for the team
+            player_teams[player].add(team)
 
 # Convert the dictionary to a list of dictionaries
 new_players_multiple_teams = [
