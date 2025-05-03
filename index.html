@@ -185,6 +185,10 @@
         const res = await fetch('listOfTeams.json');
         const teams = await res.json();
 
+        // Fetch the team logos
+        const logosRes = await fetch('teamLogos.json');
+        const teamLogos = await logosRes.json();
+
         // Shuffle the teams and select random ones for rows and columns
         const shuffledTeams = teams.sort(() => Math.random() - 0.5);
         rowHeaders = shuffledTeams.slice(0, 3); // Select 3 random teams for rows
@@ -195,20 +199,32 @@
         const headerRow = table.querySelector('tr:first-child'); // First row for column headers
         const rowHeadersElements = table.querySelectorAll('tr:not(:first-child) th:first-child'); // First <th> in each row after the first
 
-        // Update column headers
+        // Update column headers with team names and logos
         headerRow.querySelectorAll('th:not(:first-child)').forEach((th, index) => {
-          th.textContent = colHeaders[index];
+          const teamName = colHeaders[index];
+          th.innerHTML = `
+            <div style="display: flex; align-items: center; justify-content: center;">
+              <img src="${teamLogos[teamName]}" alt="${teamName} Logo" style="width: 30px; height: 30px; margin-right: 5px;">
+              <span>${teamName}</span>
+            </div>
+          `;
         });
 
-        // Update row headers
+        // Update row headers with team names and logos
         rowHeadersElements.forEach((th, index) => {
-          th.textContent = rowHeaders[index];
+          const teamName = rowHeaders[index];
+          th.innerHTML = `
+            <div style="display: flex; align-items: center; justify-content: center;">
+              <img src="${teamLogos[teamName]}" alt="${teamName} Logo" style="width: 30px; height: 30px; margin-right: 5px;">
+              <span>${teamName}</span>
+            </div>
+          `;
         });
 
         // Load player data
         await loadPlayerData();
       } catch (error) {
-        alert("Failed to load teams or player data.");
+        alert("Failed to load teams, logos, or player data.");
       }
     }
 
@@ -410,3 +426,4 @@
   </script>
 </body>
 </html>
+``` 
