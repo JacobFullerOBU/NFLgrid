@@ -3,7 +3,7 @@ import json
 from collections import defaultdict
 
 # File paths
-excel_file = "CardinalsXLions.xlsx"  # Replace with your Excel file name
+excel_file = "CardinalsXPackers.xlsx"  # Replace with your Excel file name
 output_file = "players_multiple_teams.json"  # The existing JSON file
 
 # Load the data from the Excel file

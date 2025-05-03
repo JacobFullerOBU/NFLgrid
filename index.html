@@ -69,6 +69,26 @@
       margin-top: 20px;
       font-size: 1rem;
     }
+
+    .suggestions {
+      position: absolute;
+      background-color: white;
+      border: 1px solid #ccc;
+      max-height: 150px;
+      overflow-y: auto;
+      width: 100%;
+      z-index: 1000;
+      display: none;
+    }
+
+    .suggestions div {
+      padding: 5px;
+      cursor: pointer;
+    }
+
+    .suggestions div:hover {
+      background-color: #f0f0f0;
+    }
   </style>
 </head>
 <body>
@@ -84,45 +104,56 @@
     <tr>
       <th class="header">Team X</th>
       <td>
-        <input type="text" id="cell-0-0">
-        <button onclick="submitGuess(0, 0)">Submit Guess</button>
+        <div style="position: relative;">
+          <input type="text" id="cell-0-0" oninput="showSuggestions(0, 0)">
+          <div id="suggestions-0-0" class="suggestions"></div>
+          <button onclick="submitGuess(0, 0)">Submit Guess</button>
+        </div>
       </td>
       <td>
-        <input type="text" id="cell-0-1">
+        <input type="text" id="cell-0-1" oninput="showSuggestions(0, 1)">
+        <div class="suggestions" id="suggestions-0-1"></div>
         <button onclick="submitGuess(0, 1)">Submit Guess</button>
       </td>
       <td>
-        <input type="text" id="cell-0-2">
+        <input type="text" id="cell-0-2" oninput="showSuggestions(0, 2)">
+        <div class="suggestions" id="suggestions-0-2"></div>
         <button onclick="submitGuess(0, 2)">Submit Guess</button>
       </td>
     </tr>
     <tr>
       <th class="header">Team Y</th>
       <td>
-        <input type="text" id="cell-1-0">
+        <input type="text" id="cell-1-0" oninput="showSuggestions(1, 0)">
+        <div class="suggestions" id="suggestions-1-0"></div>
         <button onclick="submitGuess(1, 0)">Submit Guess</button>
       </td>
       <td>
-        <input type="text" id="cell-1-1">
+        <input type="text" id="cell-1-1" oninput="showSuggestions(1, 1)">
+        <div class="suggestions" id="suggestions-1-1"></div>
         <button onclick="submitGuess(1, 1)">Submit Guess</button>
       </td>
       <td>
-        <input type="text" id="cell-1-2">
+        <input type="text" id="cell-1-2" oninput="showSuggestions(1, 2)">
+        <div class="suggestions" id="suggestions-1-2"></div>
         <button onclick="submitGuess(1, 2)">Submit Guess</button>
       </td>
     </tr>
     <tr>
       <th class="header">Team Z</th>
       <td>
-        <input type="text" id="cell-2-0">
+        <input type="text" id="cell-2-0" oninput="showSuggestions(2, 0)">
+        <div class="suggestions" id="suggestions-2-0"></div>
         <button onclick="submitGuess(2, 0)">Submit Guess</button>
       </td>
       <td>
-        <input type="text" id="cell-2-1">
+        <input type="text" id="cell-2-1" oninput="showSuggestions(2, 1)">
+        <div class="suggestions" id="suggestions-2-1"></div>
         <button onclick="submitGuess(2, 1)">Submit Guess</button>
       </td>
       <td>
-        <input type="text" id="cell-2-2">
+        <input type="text" id="cell-2-2" oninput="showSuggestions(2, 2)">
+        <div class="suggestions" id="suggestions-2-2"></div>
         <button onclick="submitGuess(2, 2)">Submit Guess</button>
       </td>
     </tr>
@@ -237,6 +268,47 @@
           }`
         );
       }
+    }
+
+    function showSuggestions(row, col) {
+      const input = document.getElementById(`cell-${row}-${col}`);
+      const suggestionsDiv = document.getElementById(`suggestions-${row}-${col}`);
+      const query = input.value.trim().toLowerCase();
+
+      // Clear previous suggestions
+      suggestionsDiv.innerHTML = "";
+
+      if (query === "") {
+        suggestionsDiv.style.display = "none";
+        return;
+      }
+
+      // Get the row and column teams
+      const rowTeam = rowHeaders[row];
+      const colTeam = colHeaders[col];
+
+      // Find matching players
+      const matchingPlayers = validPlayers[rowTeam]?.filter(player =>
+        player.startsWith(query)
+      ).filter(player => validPlayers[colTeam]?.includes(player)) || [];
+
+      if (matchingPlayers.length === 0) {
+        suggestionsDiv.style.display = "none";
+        return;
+      }
+
+      // Populate suggestions
+      matchingPlayers.forEach(player => {
+        const suggestion = document.createElement("div");
+        suggestion.textContent = player;
+        suggestion.onclick = () => {
+          input.value = player;
+          suggestionsDiv.style.display = "none";
+        };
+        suggestionsDiv.appendChild(suggestion);
+      });
+
+      suggestionsDiv.style.display = "block";
     }
 
     function submitGrid() {
